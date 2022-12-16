@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uespi Finance</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap');
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+            }
+        }
+    </script>
+    <style>
+        * {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        div.container {
+            width: 100vw;
+            height: 100vh;
+            background: #f0f0f0;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        div.box {
+            min-height: 100px;
+            width: 100%;
+            max-width: 350px;
+
+            padding: 25px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 25px;
+
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container max-w-full">
+        <div class="box">
+            <h1 class="text-2xl font-bold">Welcome</h1>
+
+            <br>
+            <a href="{% url 'login' %}"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-bold uppercase text-center py-2 px-4 rounded-full w-full shadow-lg shadow-blue-400">
+                Sign-In
+            </a>
+            <p class="text-xs my-5">Don't have an account?</p>
+            <a href="{% url 'register' %}"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-bold uppercase text-center py-2 px-4 rounded-full w-full shadow-lg shadow-blue-400">
+                Sign-Up
+            </a>
+
+        </div>
+    </div>
+</body>
+
+</html>
