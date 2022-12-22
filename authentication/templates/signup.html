@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap');
@@ -40,7 +40,7 @@
         div.box {
             min-height: 100px;
             width: 100%;
-            max-width: 350px;
+            max-width: 450px;
 
             padding: 25px;
 
@@ -54,14 +54,48 @@
             background-color: #fff;
         }
     </style>
+    <script>
+        function closeAlert(event){
+            
+          let element = event.target;
+          while(element.getAttribute('role') !== "alert"){
+            element = element.parentNode;
+          }
+          element.parentNode.removeChild(element);
+        }
+      </script>
 </head>
 
 <body>
     <div class="container max-w-full">
 
         <div class="box">
+
+            {% if messages %}
+                {% for i in messages %}   
+                <div class="{% if i.tags == 'error'%} bg-red-100 border-red-400 text-red-700
+                    {% else %} bg-green-100 border-green-400 text-green-700
+                    {% endif %}
+                    w-full  border  px-4 py-3 rounded relative" role="alert">
+                    <div style="width: calc(100% - 30px);">
+                        <span class="block sm:inline">{{i}}</span>
+                    </div>
+                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="closeAlert(event)">
+                        <svg class="fill-current h-6 w-6 {% if i.tags == 'error'%} text-red-500 {% else %} text-green-500 {% endif %}" 
+                            role="button" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            viewBox="0 0 20 20">
+                            <title>Close</title>
+                            <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
+                        </svg>
+                    </span>
+                </div>
+                {% endfor %}
+            {% endif %}
+
             <h2 class="text-2xl font-bold">SIGN-UP</h2>
-            <form class="w-full">
+            <form class="w-full" action="{% url 'signup' %}" method="POST">
+                {% csrf_token %}
                 <br>
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
@@ -69,7 +103,7 @@
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="name" type="text" placeholder="Fulano">
+                        id="name" name="name" type="text" placeholder="Fulano">
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
@@ -77,7 +111,7 @@
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="username" type="text" placeholder="email@email.com">
+                        id="username" name="email" type="text" placeholder="email@email.com">
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
@@ -85,7 +119,7 @@
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        id="password" type="password" placeholder="******************">
+                        id="password" name="password" type="password" placeholder="******************">
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="confirm_password">
@@ -93,7 +127,7 @@
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        id="confirm_password" type="password" placeholder="******************">
+                        id="confirm_password" name="confirm_password" type="password" placeholder="******************">
                 </div>
                 <button
                     class="bg-blue-600 hover:bg-blue-700 text-white font-bold uppercase text-center py-2 px-4 rounded-full w-full shadow-lg shadow-blue-400">
