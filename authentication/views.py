@@ -21,7 +21,16 @@ def signin(request):
     
     email = request.POST.get('email').strip()
     password = request.POST.get('password')
-    username = User.objects.get(email=email.lower()).username
+
+    if len(password) == 0 or len(email) == 0:
+        messages.add_message(request, constants.ERROR, 'Please, enter a valid email and password.')
+        return redirect('login')
+
+    try:
+        username = User.objects.get(email=email.lower()).username
+    except:
+        username = None
+    
     if not username:
         messages.add_message(request, constants.ERROR, 'Email not found.')
         return redirect('login')
