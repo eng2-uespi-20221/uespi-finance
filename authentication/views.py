@@ -1,14 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.messages import constants
+from django.http import HttpResponse
+from django.urls import reverse
 
 
 def index(request):
     return render(request, 'index.html')
 
 def login(request):
+    auth.logout(request)
     return render(request, 'login.html')
 
 def signin(request):
@@ -29,7 +33,7 @@ def signin(request):
     else:
         auth.login(request, user)
         messages.add_message(request, constants.SUCCESS, f'Sign-in sucessfull! Welcome {user.first_name}!')
-        return redirect('login')
+        return redirect('secure')
 
 def register(request):
     return render(request, 'signup.html')
@@ -71,3 +75,13 @@ def signup(request):
         messages.add_message(request, constants.ERROR, 'Error registering user! Please try again.')
         return redirect('register')
 
+def logout(request):
+    auth.logout(request)
+    messages.clear()
+    return redirect('welcome')
+
+@login_required(login_url='login')
+def secure(request):
+    user = request.user
+    logout_path = reverse('logout')
+    return HttpResponse(f'You are logged in as {user.first_name}. <a href="{logout_path}">Logout</a>')
