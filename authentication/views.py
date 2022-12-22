@@ -67,7 +67,8 @@ def signup(request):
         return redirect('register')
 
     try:
-        [first_name, last_name] = name.split(' ', 1)
+        first_name, *last_name = name.split(' ', 1)
+        last_name = last_name[0] if last_name else ''
 
         user = User.objects.create_user(
             first_name = first_name.strip(), 
@@ -86,7 +87,6 @@ def signup(request):
 
 def logout(request):
     auth.logout(request)
-    messages.clear()
     return redirect('welcome')
 
 @login_required(login_url='login')
