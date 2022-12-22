@@ -54,6 +54,16 @@
             background-color: #fff;
         }
     </style>
+    <script>
+        function closeAlert(event){
+            
+          let element = event.target;
+          while(element.getAttribute('role') !== "alert"){
+            element = element.parentNode;
+          }
+          element.parentNode.removeChild(element);
+        }
+      </script>
 </head>
 
 <body>
