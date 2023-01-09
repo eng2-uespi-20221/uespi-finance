@@ -1,0 +1,28 @@
+{% extends 'layouts/auth.html' %}
+
+{% block title %} Forgot Pass - Uespi Finance {% endblock %}
+
+{% block content %}
+<h2 class="text-2xl font-bold uppercase">reset password</h2>
+<form class="w-full" method="POST">
+    {% csrf_token %}
+    <br>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+            Email
+        </label>
+        <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="email" name="email" type="email" placeholder="email@email.com">
+    </div>
+    <button
+        class="bg-blue-600 hover:bg-blue-700 text-white font-bold uppercase text-center py-2 px-4 rounded-full w-full shadow-lg shadow-blue-400">
+        send recovery email
+    </button>
+</form>
+<a href="{% url 'login' %}"
+    class="text-xs my-5">
+    Remember your password?
+</a>
+
+{% endblock %}

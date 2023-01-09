@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset - Uespi Finance </title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap');
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+            }
+        }
+
+        function closeAlert(event){
+            
+          let element = event.target;
+          while(element.getAttribute('role') !== "alert"){
+            element = element.parentNode;
+          }
+          element.parentNode.removeChild(element);
+        }
+      </script>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <p class="mb-5">
+                Access the following link to reset your password:
+            </p>
+            <a class="mt-5 text-blue-600 visited:text-purple-600" href="{{ url }}">
+                {{ url }}
+            </a>
+            <p class=" mt-5">
+                If you have not requested it, please ignore this email.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
