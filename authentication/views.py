@@ -51,22 +51,22 @@ def signup(request):
     if request.method != 'POST':
         return redirect('register')
 
-    name = request.POST.get('name')
-    email = request.POST.get('email').strip()
-    password = request.POST.get('password').strip()
-    confirm_password = request.POST.get('confirm_password').strip()
-
-    if len(password) == 0 or len(email) == 0:
-        messages.add_message(request, constants.ERROR, 'Please, enter a valid email and password.')
-        return redirect('register')
-    elif password != confirm_password:
-        messages.add_message(request, constants.ERROR, 'The password confirmation doesn\'t match.')
-        return redirect('register')
-    elif User.objects.filter(email = email).exists():
-        messages.add_message(request, constants.ERROR, 'A user with that email already exists.')
-        return redirect('register')
-
     try:
+        name = request.POST.get('name')
+        email = request.POST.get('email').strip()
+        password = request.POST.get('password').strip()
+        confirm_password = request.POST.get('confirm_password').strip()
+
+        if len(password) == 0 or len(email) == 0:
+            messages.add_message(request, constants.ERROR, 'Please, enter a valid email and password.')
+            return redirect('register')
+        elif password != confirm_password:
+            messages.add_message(request, constants.ERROR, 'The password confirmation doesn\'t match.')
+            return redirect('register')
+        elif User.objects.filter(email = email).exists():
+            messages.add_message(request, constants.ERROR, 'A user with that email already exists.')
+            return redirect('register')
+
         first_name, *last_name = name.split(' ', 1)
         last_name = last_name[0] if last_name else ''
 
