@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <ul>
+        <li>
+            <button
+                class="bg-blue-600 hover:bg-blue-700 text-white font-bold uppercase text-center py-2 px-4 rounded-full w-full shadow-lg shadow-blue-400">
+                Transações
+            </button>
+        </li>
+        <li>Categoria</li>
+        <li>Orçamentos Mensais</li>
+        <li>Relatórios</li>
+    </ul>
+    <div> 
+            <a href="{% url 'create' %}" >Novo</a>
+        
+    </div>
+    <div>
+        <table style="border-collapse:collapse;border-spacing:0" class="tg">
+            <thead>
+                <tr>
+                    <td
+                        style="border-color:inherit;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
+                        Nome </td>
+
+                    <td
+                        style="border-color:inherit;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
+                        Categoria</td>
+
+                    <td
+                        style="border-color:inherit;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
+                        Ações</td>
+                </tr>
+            </thead>
+            <tbody>
+                {%for category in categories %}
+                <tr>
+                    <td>{{category.nome}}</td>
+                    <td>{{category.descricao}}</td>
+                    <td><button> Edit</button> <button>Delete</button>
+
+                    </td>
+
+                </tr>
+                {%endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+
+</html>

@@ -175,3 +175,4 @@ cython_debug/
 .workflow-Django/django-r-r.jpg
 .workflow-Django/request_response_lifecycle_Django.png
 db.sqlite3
+.vscode/launch.json
