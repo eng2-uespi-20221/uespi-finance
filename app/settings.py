@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authentication',
-    'app'
+    'app',
+    'crudTransacao',
 ]
 
 MIDDLEWARE = [

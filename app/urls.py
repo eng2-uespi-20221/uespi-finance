@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('authentication.urls')),
     path('template/', TemplateView.as_view(template_name='layouts/base.html')),
+    path('crudTransacao/', include('crudTransacao.urls'))
 ]
