@@ -9,18 +9,21 @@ Function views
 Class-based views
     1. Add an import:  from other_app.views import Home
     2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+                                # path('endereço/', minhaView.as_view(), nome='nome-da-url');
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import include, path
-from django.views.generic import TemplateView
+#from django.contrib import admin
+from django.urls import path
+from . import views
+from category.views import CategoryHomeView, CategoryCreateView , CategoryDeleteView 
+from category.views import CategoryUpdateView, CategoryListView ;
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('auth/', include('authentication.urls')),
-    path('template/', TemplateView.as_view(template_name='layouts/base.html')),
-    path('crudTransacao/', include('crudTransacao.urls')),
-    path('category/', include('category.urls')) #gui- atualizar,  -colocar category, entre aspas simples quebra a url
+    path ('',CategoryHomeView.as_view(), name ='category') ,
+    path ('create/',CategoryCreateView.as_view(), name ='create')
+   # path('category', CategoryCreateView.as_view(), name='CreateCategory')
+
+
 ]
