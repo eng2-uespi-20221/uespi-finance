@@ -1,19 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'layouts/base.html' %}
+
+{% block menu_transaction %}selected{% endblock menu_transaction %}
+
+{% block content %}
+
+{% load static %}
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
-<body>
+
+<div class="container">
     <div>
-        <ul>
-            {% for transacao in transacaos %}
-                <li>{{ transacao.data }} {{ transacao.descricao }} {{ transacao.valor }}</li>
-            {% endfor %}
-            </ul>
+        <table>
+            <tr>
+                <th>Data</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Editar</th>
+                <th>Deletar</th>
+        
+            </tr>
             
+                {% for transacao in transacaos %}
+                <tr>
+                    <td> {{ transacao.data }} </td> 
+                    <td> {{ transacao.descricao }} </td>
+                    <td> {{ transacao.valor }}</td>
+                    <td>
+                        <div class="editar">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M5.3 19h1.075l9.9-9.9L15.2 8.025l-9.9 9.9ZM18.425 8.375l-2.5-2.475 1.2-1.2q.3-.325.725-.325t.725.325l1.05 1.025q.3.3.3.725t-.3.725ZM17.7 9.1 6.8 20H4.3v-2.5L15.2 6.6Zm-1.975-.55-.525-.525L16.275 9.1Z"/></svg>
+                        </div>
+                        <td>
+                            <div class="deletar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M7 21q-.825 0-1.412-.587Q5 19.825 5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413Q17.825 21 17 21ZM17 6H7v13h10ZM9 17h2V8H9Zm4 0h2V8h-2ZM7 6v13Z"/></svg>
+                            </div>
+                        </td>
+                    </td>
+                </tr>
+            {% endfor %}
+            
+
+        </table>
+
     </div>
-</body>
-</html>
+</div>
+
+{% endblock content %}
