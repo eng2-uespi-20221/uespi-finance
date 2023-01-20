@@ -3,9 +3,6 @@ from django.http import HttpResponse
 from .models import Transacao
 # Create your views here.
 
-
-
-
 def vcreate(request):
     return ''
 

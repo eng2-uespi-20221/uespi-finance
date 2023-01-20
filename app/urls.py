@@ -22,5 +22,7 @@ urlpatterns = [
     path('auth/', include('authentication.urls')),
     path('template/', TemplateView.as_view(template_name='layouts/base.html')),
     path('crudTransacao/', include('crudTransacao.urls')),
-    path('category/', include('category.urls')) #gui- atualizar,  -colocar category, entre aspas simples quebra a url
+    # gui- atualizar,  -colocar category, entre aspas simples quebra a url
+    path('category/', include('category.urls')),
+    path('budget/', include('budget.urls')),  # 003-srsa
 ]

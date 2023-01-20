@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'authentication',
     'app',
     'crudTransacao',
-    'category.apps.CategoryConfig' #guilherme
+    'category.apps.CategoryConfig',  # guilherme
+    'budget'  # 001-srsa-18/01/23--22:47
 ]
 
 MIDDLEWARE = [
@@ -67,7 +68,7 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ BASE_DIR / 'templates' ],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
