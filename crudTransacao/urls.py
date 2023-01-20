@@ -5,6 +5,6 @@ from . import views
 urlpatterns = [
     path('vcreate/', views.vcreate),
     path('vdelete/', views.vdelete),
-    path('vread/', views.vread),
+    path('vread/', views.vread, name="transacao"),
     path('vupdate/', views.vupdate),
 ]

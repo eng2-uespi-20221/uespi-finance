@@ -48,7 +48,7 @@ def signin(request):
     else:
         auth.login(request, user)
         messages.add_message(request, constants.SUCCESS, f'Sign-in sucessfull! Welcome {user.first_name}!')
-        return redirect('secure')
+        return redirect('transacao')
 
 def register(request):
     return render(request, 'signup.html')
