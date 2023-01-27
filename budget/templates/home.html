@@ -1,5 +1,5 @@
 {% extends 'layouts/base.html' %}
-{% block menu_transaction %}selected{% endblock menu_transaction %}
+{% block menu_budget %}selected{% endblock menu_budget %}
 {% block content %}
 {% load static %}
 
@@ -33,18 +33,18 @@
             <td> {{ budget.id }} </td>
             <td> {{ budget.orcamento }} </td>
             <td>
-            <div class="editar">
-               <button>
-                  <a href="{% url 'editar' %}">
-                     <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
-                           <path
-                              d="M5.3 19h1.075l9.9-9.9L15.2 8.025l-9.9 9.9ZM18.425 8.375l-2.5-2.475 1.2-1.2q.3-.325.725-.325t.725.325l1.05 1.025q.3.3.3.725t-.3.725ZM17.7 9.1 6.8 20H4.3v-2.5L15.2 6.6Zm-1.975-.55-.525-.525L16.275 9.1Z" />
-                        </svg>
-                     </span>
-                  </a>
-               </button>
-            </div>
+               <div class="editar">
+                  <button>
+                     <a href="{% url 'editar' %}">
+                        <span>
+                           <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                              <path
+                                 d="M5.3 19h1.075l9.9-9.9L15.2 8.025l-9.9 9.9ZM18.425 8.375l-2.5-2.475 1.2-1.2q.3-.325.725-.325t.725.325l1.05 1.025q.3.3.3.725t-.3.725ZM17.7 9.1 6.8 20H4.3v-2.5L15.2 6.6Zm-1.975-.55-.525-.525L16.275 9.1Z" />
+                           </svg>
+                        </span>
+                     </a>
+                  </button>
+               </div>
             </td>
             <td>
                <div class="deletar">
