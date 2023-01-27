@@ -1,0 +1,70 @@
+{% extends 'layouts/base.html' %}
+{% block menu_transaction %}selected{% endblock menu_transaction %}
+{% block content %}
+{% load static %}
+
+<head>
+   <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<div class="container">
+   <div>
+      <div class="button">
+         <form action="{% url 'post_create' %}">
+            <button>
+               <span>
+                  <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path
+                        d="M16.19 2H7.81C4.17 2 2 4.17 2 7.81V16.18C2 19.83 4.17 22 7.81 22H16.18C19.82 22 21.99 19.83 21.99 16.19V7.81C22 4.17 19.83 2 16.19 2ZM16 12.75H12.75V16C12.75 16.41 12.41 16.75 12 16.75C11.59 16.75 11.25 16.41 11.25 16V12.75H8C7.59 12.75 7.25 12.41 7.25 12C7.25 11.59 7.59 11.25 8 11.25H11.25V8C11.25 7.59 11.59 7.25 12 7.25C12.41 7.25 12.75 7.59 12.75 8V11.25H16C16.41 11.25 16.75 11.59 16.75 12C16.75 12.41 16.41 12.75 16 12.75Z"
+                        fill="#1b69cc" />
+                  </svg>
+               </span>
+            </button>
+         </form>
+      </div>
+      <table>
+         <tr>
+            <th>id</th>
+            <th>Descrição</th>
+            <th>Editar</th>
+            <th>Deletar</th>
+         </tr>
+         {% for budget in budgets %}
+         <tr>
+            <td> {{ budget.id }} </td>
+            <td> {{ budget.orcamento }} </td>
+            <td>
+            <div class="editar">
+               <button>
+                  <a href="{% url 'editar' %}">
+                     <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                           <path
+                              d="M5.3 19h1.075l9.9-9.9L15.2 8.025l-9.9 9.9ZM18.425 8.375l-2.5-2.475 1.2-1.2q.3-.325.725-.325t.725.325l1.05 1.025q.3.3.3.725t-.3.725ZM17.7 9.1 6.8 20H4.3v-2.5L15.2 6.6Zm-1.975-.55-.525-.525L16.275 9.1Z" />
+                        </svg>
+                     </span>
+                  </a>
+               </button>
+            </div>
+            </td>
+            <td>
+               <div class="deletar">
+                  <button>
+                     <span>
+                        <a href="vdelete/{{ transacaos.id }}"></a>
+                     </span>
+                     <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                           <path
+                              d="M7 21q-.825 0-1.412-.587Q5 19.825 5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413Q17.825 21 17 21ZM17 6H7v13h10ZM9 17h2V8H9Zm4 0h2V8h-2ZM7 6v13Z" />
+                        </svg>
+                     </span>
+                  </button>
+               </div>
+            </td>
+            </td>
+         </tr>
+         {% endfor %}
+      </table>
+   </div>
+</div>
+{% endblock content %}
