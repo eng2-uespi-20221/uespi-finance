@@ -1,1 +1,36 @@
-update
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>teste</h1>
+
+    <ul>
+        {% for transacao in transacaos %}
+        <li>{{ transacao.data }} - {{  transacao.descricao }} -
+            <a href="{% url 'vupdate' transacao.id %}">Editar</a> -
+            <a href="{% url 'vdelete' transacao.id %}">Excluir</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    {{ transacao.nome }} - {{ transacaos.descricao }} - {{ transacaos.tipo_transacao }} - {{ transacaos.valor }}
+
+    <form action="{% url 'vcreate' %}" method="POST">
+        {% csrf_token %}
+        <!-- requerido por normas de segurança do django -->
+        <input type="text" name="data" id="data">
+        <input type="text" name="descricao" id="descricao">
+        <input type="text" name="tipo_transacao" id="tipo_transacao">
+        <input type="text" name="valor" id="valor">
+        <button type='submit'>Salvar</button>
+    </form>
+</body>
+
+</html>
