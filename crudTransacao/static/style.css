@@ -34,3 +34,7 @@ table {
     padding-left: 20px;
     padding-right: 0;
   }
+
+th{
+  margin-bottom: 15px;
+}

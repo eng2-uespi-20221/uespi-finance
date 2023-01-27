@@ -1,3 +1,9 @@
+
+{% extends 'layouts/base.html' %}
+{% block menu_transaction %}selected{% endblock menu_transaction %}
+{% block content %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,15 +13,24 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{% url 'vcreate' %}" method="POST">
+    <form class="criar" action="{% url 'vcreate' %}" method="POST">
         {% csrf_token %}
         <!-- requerido por normas de segurança do django -->
-        <input type="text" name="data" id="data">
-        <input type="text" name="descricao" id="descricao">
-        <input type="text" name="tipo_transacao" id="tipo_transacao">
-        <input type="text" name="valor" id="valor">
+        <th>Data</th>
+        <input type="text" name="data" id="data"><br>
+        <th>Descrição</th>
+        <input type="text" name="descricao" id="descricao"><br>
+        <th>Tipo de Transação</th>
+        <!--<input type="text" name="tipo_transacao" id="tipo_transacao"><br> -->
+        <select name="tipo_transacao" id="tipo_transacao">
+            <option value="0" selected>Débito</option>
+            <option value="1">Crédito</option>
+        </select><br>
+        <th>Valor</th>
+        <input type="text" name="valor" id="valor"><br>
         <button type='submit'>Salvar</button>
     </form>
 </body>
 </body>
 </html>
+{% endblock content %}
