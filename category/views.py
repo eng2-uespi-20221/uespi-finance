@@ -33,15 +33,8 @@ class CategoryUpdateView(LoginRequiredMixin,View):
     def post(self, request, id):
         category = Category.objects.get(id=id)
         category.name = request.POST['name']
-        category.description = request.POST('description')
         category.save()
-        return redirect('category_list')      
-    # def update(request, id):
-    #     vnome = request.POST('nome')
-    #     Category= Category.objects.get(id=id)
-    #     Category.nome = vnome
-    #     Category.save()
-    #     return redirect('category')
+        return redirect('category')      
 class CategoryListView(LoginRequiredMixin,View):
     def get(self, request):
         categories = Category.objects.all()
