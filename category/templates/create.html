@@ -1,25 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap');
-    </style>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {}
-        }
-    </script>
-</head>
-
-<body>
+{% extends 'layouts/base.html' %}
+{% comment %}{% endcomment %}
+{% block menu_category %}selected{% endblock menu_category %}
+{% block content %}
     <div>
-        <form class="w-full max-w-lg">
+        <form class="w-full max-w-lg" method="POST" action="{% url 'create' %} ">
+            {% csrf_token %}
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -27,9 +12,9 @@
                         Nova Categoria
                     </label>
                     <input
-                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                        id="grid-first-name" type="text" placeholder="Ex: Gasolina, Aluguel">
-                    <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+                        class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                        id="grid-first-name" type="text" placeholder="Ex: Gasolina, Aluguel" name="name">
+                    {% comment %} <p class="text-red-500 text-xs italic">Please fill out this field.</p> {% endcomment %}
                 </div>
             </div>
             <div class="flex flex-wrap -mx-3 mb-2">
@@ -40,9 +25,10 @@
                     <div class="relative">
                         <select
                             class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            id="grid-state">
-                            <option value="0">Debito</option>
-                            <option value="1">Crédito</option>
+                            id="grid-state" name="type_transaction">
+                            
+                            <option value="0">Receita</option>
+                            <option value="1">Despesa</option>
                         </select>
 
 
@@ -58,13 +44,15 @@
                             Cancel
                         </button>
                         <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                            Novo
+                            Criar<ul class="nav navbar-nav">
+                                <li><a href="{% url 'create' %}"></a></li>
+                             </ul>
                         </button>
                     </div>
                 </div>
             </div>
         </form>
     </div>
-</body>
 
-</html>
+
+{% endblock content %}X
