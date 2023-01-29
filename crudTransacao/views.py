@@ -35,8 +35,7 @@ def vupdate(request, id):
 def vread(request):
 
     transacaos = Transacao.objects.filter(user_id=request.user.id)
-    print(transacaos)
-    # print(request.user.id)
+    #print(request.user.id)
     return render(request, 'readT.html', {
         "transacaos": transacaos
     })
