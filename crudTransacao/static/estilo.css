@@ -70,23 +70,3 @@
         margin-top: 15px;
     }
 
-.bar{
-    height: 2.8em;
-    padding: 5px 15px 30px 30px;
-
-}
-
-.list{
-    padding: 5px 15px 30px 30px;
-    max-height: 100%;
-}
-
-#t_button{
-    display: inline-flex;
-}
-
-#tit_lista{
-    padding-left: 28%;
-    font-size: 20pt;
-        
-}
