@@ -52,8 +52,9 @@ def vcreate(request):
         vdescricao = request.POST.get('descricao')
         vtipo_transacao = request.POST.get('tipo_transacao')
         vvalor = request.POST.get('valor')
+        valorformatado = str(vvalor).replace(',','.')
         # cria um registro no bd no campo nome passando a ver vnome
-        Transacao.objects.create(data=vdata, descricao=vdescricao, tipo_transacao=vtipo_transacao, valor=vvalor)
+        Transacao.objects.create(data=vdata, descricao=vdescricao, tipo_transacao=vtipo_transacao, valor=valorformatado)
         # envia lista atualizada do bd para o index.html
         #transacaos = Transacao.objects.all()
         # recarrega a página index.html com os dados atualizados
