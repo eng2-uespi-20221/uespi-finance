@@ -16,8 +16,6 @@
     <form class="criar" action="{% url 'vcreate' %}" method="POST">
         {% csrf_token %}
         <!-- requerido por normas de segurança do django -->
-        <th>Data</th>
-        <input type="text" name="data" id="data"><br>
         <th>Descrição</th>
         <input type="text" name="descricao" id="descricao"><br>
         <th>Tipo de Transação</th>
