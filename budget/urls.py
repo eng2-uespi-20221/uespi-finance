@@ -3,5 +3,6 @@ from . import views
 
 # declarar rota
 urlpatterns = [
-    path('home/', views.home)
+    path('', views.home, name='home'),
+    # path('update/', views.update)
 ]

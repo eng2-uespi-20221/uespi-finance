@@ -8,4 +8,9 @@ from . models import Budget
 # recupera lista bd / renderiza home.html
 def home(request):
     budgets = Budget.objects.all()
-    return render(request, 'home.html', {'budgets' : budgets})
+    return render(request, 'home.html', {'budgets': budgets})
+
+
+
+# def update(request):
+#     return render(request, 'update.html')
