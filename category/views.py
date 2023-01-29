@@ -1,47 +1,53 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from .models import Category
-from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+#from django.views.generic import TemplateView
 
 # Create your views here.
-class CategoryHomeView(View):
+class CategoryHomeView(LoginRequiredMixin,View):
+    login_url = 'login'
     def get(self, request):  
         cat = Category.objects.all()
-        return render(request, 'category.html', {'categories':cat})    
-    
+        return render(request, 'category.html', {'categories':cat})       
 #def home (request):
  #   return HttpResponse('str')
-
-class CategoryCreateView(View):
+class CategoryCreateView(LoginRequiredMixin,View):
     def get(self, request):
         return render(request, 'create.html')
-
     def post(self, request):
         name = request.POST['name']
-        description = request.POST['description']
-        category = Category(name=name, description=description)
+        type_transaction = request.POST['type_transaction']
+        if len(name)<2:
+            return redirect('create')
+        category = Category(name=name, type_transaction=type_transaction)
         category.save()
-        return redirect('category_list')
+        return redirect('category')
 
-class CategoryUpdateView(View):
+class CategoryUpdateView(LoginRequiredMixin,View):
     def get(self, request, id):
         category = Category.objects.get(id=id)
+        print()
         return render(request, 'category_update.html', {'category': category})
-
     def post(self, request, id):
         category = Category.objects.get(id=id)
         category.name = request.POST['name']
-        category.description = request.POST['description']
+        category.description = request.POST('description')
         category.save()
-        return redirect('category_list')
-
-class CategoryListView(View):
+        return redirect('category_list')      
+    # def update(request, id):
+    #     vnome = request.POST('nome')
+    #     Category= Category.objects.get(id=id)
+    #     Category.nome = vnome
+    #     Category.save()
+    #     return redirect('category')
+class CategoryListView(LoginRequiredMixin,View):
     def get(self, request):
         categories = Category.objects.all()
         return render(request, 'category_list.html', {'categories': categories})
-
-class CategoryDeleteView(View):
+class CategoryDeleteView(LoginRequiredMixin,View):
     def get(self, request, id):
         category = Category.objects.get(id=id)
         category.delete()
-        return redirect('category_list')
+        return redirect('category')
