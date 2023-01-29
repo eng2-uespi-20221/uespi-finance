@@ -7,7 +7,7 @@
 </head>
 <div class="container">
     <div class="button">
-        <form action="{% url 'abrircreate' %}">
+        <form action="{% url 'opencreate' %}">
             <button>
                 <span>
                     <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -19,25 +19,17 @@
     </div>
     <table>
         <tr>
-            <th>id</th>
-            <th>Data</th>
-            <th>Descrição</th>
-            <th>Valor</th>
-            <th>Tipo de Transacao</th>
-            <th>Editar</th>
-            <th>Deletar</th>
+            <th>Orçamento</th>
+            <th>Valor Limite</th>
         </tr>
         {% for transacao in transacaos %}
         <tr>
-            <td> {{ transacao.id }} </td>
-            <td> {{ transacao.data }} </td>
-            <td> {{ transacao.descricao }} </td>
-            <td> {{ transacao.valor }}</td>
-            <td> {{ transacao.tipo_transacao }}</td>
+            <td> {{ budget.orcamento }} </td>
+            <td> {{ budget.valor_limite }} </td>
             <td>
                 <div class="editar">
                     <button>
-                        <a href="{% url 'vupdate' transacao.id %}">
+                        <a href="{% url 'abrirupdate' budget.id %}">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
                                 <path d="M5.3 19h1.075l9.9-9.9L15.2 8.025l-9.9 9.9ZM18.425 8.375l-2.5-2.475 1.2-1.2q.3-.325.725-.325t.725.325l1.05 1.025q.3.3.3.725t-.3.725ZM17.7 9.1 6.8 20H4.3v-2.5L15.2 6.6Zm-1.975-.55-.525-.525L16.275 9.1Z"/>

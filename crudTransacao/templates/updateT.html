@@ -22,15 +22,12 @@
         </div>
         
         <th>Tipo de Transação</th>
-        <div class="w-64 bg-white shadow rounded">
-            <select name="tipo_transacao" id="tipo_transacao">
-                <option value="{{ transacao.tipo_transacao }}" selected >Débito</option>
-                <option value="Débito">Débito</option>
-                <option value="Crédito">Crédito</option>
-            </select><br>
-        </div>
-        
-
+        <!--<input type="text" name="tipo_transacao" id="tipo_transacao"><br> -->
+        <select name="tipo_transacao" id="tipo_transacao">
+            <option value="{{ transacao.tipo_transacao }}" selected >Débito</option>
+            <option value="Débito">Débito</option>
+            <option value="Crédito">Crédito</option>
+        </select><br>
         <th>Valor</th>
         <div class="w-64 bg-white shadow rounded">
             <input type="text" value="{{ transacao.valor }}" name="valor" id="valor"><br>

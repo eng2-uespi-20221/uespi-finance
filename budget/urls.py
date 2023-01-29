@@ -4,5 +4,5 @@ from . import views
 # declarar rota
 urlpatterns = [
     path('', views.home, name='home'),
-    # path('update/', views.update)
+    path('opecreate/', views.opencreate, name='opencreate')
 ]
