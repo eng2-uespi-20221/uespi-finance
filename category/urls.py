@@ -22,7 +22,11 @@ from category.views import CategoryUpdateView, CategoryListView ;
 
 urlpatterns = [
     path ('',CategoryHomeView.as_view(), name ='category') ,
-    path ('create/',CategoryCreateView.as_view(), name ='create')
+    path ('create/',CategoryCreateView.as_view(), name ='create'),
+    path ('update/<int:id>',CategoryUpdateView.as_view(), name ='update'),
+    # path ('list/<int:id>',CategoryListView.as_view(), name ='list'),
+    path ('delete/<int:id>',CategoryDeleteView.as_view(), name ='delete')
+    
    # path('category', CategoryCreateView.as_view(), name='CreateCategory')
 
 

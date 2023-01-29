@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- exibir a id e pessoa selecionada -->
+    {{category.id}} - {{category.nome}}
+
+    <form action="{% url 'update' category.id %}" method="POST">
+        <!-- requerido por normas de segurança do django -->
+        {% csrf_token %}
+        <!-- o value carrega o registro atual -->
+        <input type="text" name="nome" id="nome" value="{{category.nome}}">
+        <button type='submit'>Update</button>
+    </form>
+
+</body>
+
+</html>

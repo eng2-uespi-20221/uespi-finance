@@ -1,36 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'layouts/base.html' %}
+{% block menu_transaction %}selected{% endblock menu_transaction %}
+{% block content %}
+{% load static %}
 
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
 <body>
-    <h1>teste</h1>
-
-    <ul>
-        {% for transacao in transacaos %}
-        <li>{{ transacao.data }} - {{  transacao.descricao }} -
-            <a href="{% url 'vupdate' transacao.id %}">Editar</a> -
-            <a href="{% url 'vdelete' transacao.id %}">Excluir</a>
-        </li>
-        {% endfor %}
-    </ul>
-
-    {{ transacao.nome }} - {{ transacaos.descricao }} - {{ transacaos.tipo_transacao }} - {{ transacaos.valor }}
-
-    <form action="{% url 'vcreate' %}" method="POST">
+    <form class="editar" action="{% url 'vupdate' transacao.id %}"  method="POST">
         {% csrf_token %}
         <!-- requerido por normas de segurança do django -->
-        <input type="text" name="data" id="data">
-        <input type="text" name="descricao" id="descricao">
-        <input type="text" name="tipo_transacao" id="tipo_transacao">
-        <input type="text" name="valor" id="valor">
+        <th>Descrição</th>
+        <input type="text" value="{{ transacao.descricao }}" name="descricao" id="descricao"><br>
+        <th>Tipo de Transação</th>
+        <!--<input type="text" name="tipo_transacao" id="tipo_transacao"><br> -->
+        <select name="tipo_transacao" id="tipo_transacao">
+            <option value="{{ transacao.tipo_transacao }}" selected >Débito</option>
+            <option value="Débito">Débito</option>
+            <option value="Crédito">Crédito</option>
+        </select><br>
+        <th>Valor</th>
+        <input type="text" value="{{ transacao.valor }}" name="valor" id="valor"><br>
         <button type='submit'>Salvar</button>
     </form>
 </body>
-
+</body>
 </html>
+{% endblock content %}
