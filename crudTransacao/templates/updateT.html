@@ -12,20 +12,31 @@
     <title>Document</title>
 </head>
 <body>
-    <form class="editar" action="{% url 'vupdate' transacao.id %}"  method="POST">
+    <form class="flex-auto p-6" action="{% url 'vupdate' transacao.id %}"  method="POST">
         {% csrf_token %}
         <!-- requerido por normas de segurança do django -->
+
         <th>Descrição</th>
-        <input type="text" value="{{ transacao.descricao }}" name="descricao" id="descricao"><br>
+        <div class="w-64 bg-white shadow rounded">
+            <input type="text" value="{{ transacao.descricao }}" name="descricao" id="descricao"><br>
+        </div>
+        
         <th>Tipo de Transação</th>
-        <!--<input type="text" name="tipo_transacao" id="tipo_transacao"><br> -->
-        <select name="tipo_transacao" id="tipo_transacao">
-            <option value="{{ transacao.tipo_transacao }}" selected >Débito</option>
-            <option value="Débito">Débito</option>
-            <option value="Crédito">Crédito</option>
-        </select><br>
+        <div class="w-64 bg-white shadow rounded">
+            <select name="tipo_transacao" id="tipo_transacao">
+                <option value="{{ transacao.tipo_transacao }}" selected >Débito</option>
+                <option value="Débito">Débito</option>
+                <option value="Crédito">Crédito</option>
+            </select><br>
+        </div>
+        
+
         <th>Valor</th>
-        <input type="text" value="{{ transacao.valor }}" name="valor" id="valor"><br>
+        <div class="w-64 bg-white shadow rounded">
+            <input type="text" value="{{ transacao.valor }}" name="valor" id="valor"><br>
+        </div>
+
+
         <button type='submit'>Salvar</button>
     </form>
 </body>
