@@ -31,11 +31,12 @@ def vupdate(request, id):
 
     return redirect(vread)
 
-
+@login_required(login_url='login')
 def vread(request):
 
-    transacaos = Transacao.objects.all()
-    #print(request.user.id)
+    transacaos = Transacao.objects.filter(user_id=request.user.id)
+    print(transacaos)
+    # print(request.user.id)
     return render(request, 'readT.html', {
         "transacaos": transacaos
     })
@@ -54,7 +55,7 @@ def vcreate(request):
         vvalor = request.POST.get('valor')
         valorformatado = str(vvalor).replace(',','.')
         # cria um registro no bd no campo nome passando a ver vnome
-        Transacao.objects.create(data=vdata, descricao=vdescricao, tipo_transacao=vtipo_transacao, valor=valorformatado)
+        Transacao.objects.create(data=vdata, descricao=vdescricao, tipo_transacao=vtipo_transacao, valor=valorformatado, user=request.user)
         # envia lista atualizada do bd para o index.html
         #transacaos = Transacao.objects.all()
         # recarrega a página index.html com os dados atualizados

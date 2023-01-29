@@ -10,7 +10,11 @@ def home(request):
     budgets = Budget.objects.all()
     return render(request, 'home.html', {'budgets': budgets})
 
+def opencreate(request):
+    budgets = Budget.objects.all()
+    return render(request, 'create_budget.html', {'budgets':budgets})
 
+def abrirupdate(request, id):
+    budget = Budget.objects.get(id=id)
+    return render(request, 'updateT.html', {'budget':budget})
 
-# def update(request):
-#     return render(request, 'update.html')
