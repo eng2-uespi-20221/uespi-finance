@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 def vdelete(request, id):
     transacao = get_object_or_404(Transacao, id=id)
     transacao.delete()
-    return redirect('vcreate')
+    return redirect('transacao')
 
 def abrirupdate(request, id):
     transacao = Transacao.objects.get(id=id)
@@ -15,12 +15,18 @@ def abrirupdate(request, id):
     
 
 def vupdate(request, id):
-
     #recebe do template updateT os dados inseridos pelo usuario
     vdescricao = request.POST.get('descricao')
     vtipo_transacao = request.POST.get('tipo_transacao')
     vvalor = request.POST.get('valor')
     valor = str(vvalor).replace(',','.')
+    #se os valores obtidos forem nulo
+    if not vdescricao or not vtipo_transacao or not valor: 
+        #recupera o id da transacao
+        transacao = Transacao.objects.get(id=id)        
+        #retorna para o formulario updateT passando o id da transacao         
+        return render(request, 'updateT.html', {'transacao':transacao})
+
     #obtem id do registro
     transacao = Transacao.objects.get(id=id)
     
@@ -40,8 +46,7 @@ def vread(request):
     })
 
 def abrircreate(request):
-    transacaos = Transacao.objects.all()
-    return render(request, 'createT.html', {'transacaos':transacaos})
+    return render(request, 'createT.html')
 
 
 def vcreate(request):
@@ -52,12 +57,17 @@ def vcreate(request):
         vtipo_transacao = request.POST.get('tipo_transacao')
         vvalor = request.POST.get('valor')
         valorformatado = str(vvalor).replace(',','.')
-        # cria um registro no bd no campo nome passando a ver vnome
-        Transacao.objects.create(data=vdata, descricao=vdescricao, tipo_transacao=vtipo_transacao, valor=valorformatado, user=request.user)
-        # envia lista atualizada do bd para o index.html
-        #transacaos = Transacao.objects.all()
-        # recarrega a página index.html com os dados atualizados
+        #verifica se os campos estão vazios
+        if not vdescricao or not vtipo_transacao or not vvalor:
+            
+            return render(request, 'createT.html')
+
+    Transacao.objects.create(data=vdata, descricao=vdescricao, tipo_transacao=vtipo_transacao, valor=valorformatado, user=request.user)
+        
     return redirect(vread)
+
+  
+
 
 
 
