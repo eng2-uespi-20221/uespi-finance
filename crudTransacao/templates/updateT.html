@@ -2,41 +2,48 @@
 {% block menu_transaction %}selected{% endblock menu_transaction %}
 {% block content %}
 {% load static %}
-
-<!DOCTYPE html>
-<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'estilo2.css' %}">
 </head>
+
 <body>
-    <form class="flex-auto p-6" action="{% url 'vupdate' transacao.id %}"  method="POST">
-        {% csrf_token %}
-        <!-- requerido por normas de segurança do django -->
+    <div class="form-container2">
+        <h3 id="tit-crudbox">EDITAR TRANSAÇÃO</h3>
+        <form action="{% url 'vupdate' transacao.id %}" class="form-crud" method="POST">
+            {% csrf_token %}
+            <div class="row-form">
+                <div class="input">
+                    <label for="descricao">Descrição</label>
+                    <input type="text" name="descricao" id="descricao" value="{{ transacao.descricao }}" autofocus>
+                </div>
 
-        <th>Descrição</th>
-        <div class="w-64 bg-white shadow rounded">
-            <input type="text" value="{{ transacao.descricao }}" name="descricao" id="descricao"><br>
-        </div>
-        
-        <th>Tipo de Transação</th>
-        <!--<input type="text" name="tipo_transacao" id="tipo_transacao"><br> -->
-        <select name="tipo_transacao" id="tipo_transacao">
-            <option value="{{ transacao.tipo_transacao }}" selected >Débito</option>
-            <option value="Despesa">Despesa</option>
-            <option value="Receita">Receita</option>
-        </select><br>
-        <th>Valor</th>
-        <div class="w-64 bg-white shadow rounded">
-            <input type="text" value="{{ transacao.valor }}" name="valor" id="valor"><br>
-        </div>
-
-
-        <button type='submit'>Salvar</button>
-    </form>
-</body>
-</body>
-</html>
+                <div class="input">
+                    <span>Valor</span>
+                    <input type="text" name="valor" id="valor" value="{{ transacao.valor }}">
+                </div>
+            </div>
+            <div class="row-form">
+                <select name="tipo_transacao" id="tipo_transacao">
+                    <option value="{{ transacao.tipo_transacao }}" selected >{{ transacao.tipo_transacao }}</option>
+                    <option value="Despesa">Despesa</option>
+                    <option value="Receita">Receita</option>
+                </select><br>
+                <div class="input">
+                    <button type="submit" id="salvar" class="enviar" name="form-salvar">Salvar</button>
+                </div>
+            </div>
+        </form>
+<script>
+    document.getElementById("salvar").addEventListener("click", function(){
+        var descricao = document.getElementById("descricao").value;
+        var valor = document.getElementById("valor").value;
+        var tipo_transacao = document.getElementsByName("tipo_transacao");
+        if (!descricao || !valor) {
+            alert("Por favor, preencha todos os campos corretamente");
+        }
+    });
+</script>
+</body> 
 {% endblock content %}
+
+
