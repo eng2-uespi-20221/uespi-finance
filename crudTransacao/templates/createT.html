@@ -2,7 +2,6 @@
 {% block menu_transaction %}selected{% endblock menu_transaction %}
 {% block content %}
 {% load static %}
-
 <head>
     <link rel="stylesheet" href="{% static 'estilo2.css' %}">
 </head>
@@ -27,13 +26,39 @@
                 <div class="input">
                     <span>Tipo transação:</span>
                     <label for="despesa">Despesa</label>
-                    <input type="radio" name="tipo_transacao" id="despesa" value="Despesa" selected class="radio-btn">
+                    <input class="radio" type="radio" name="tipo_transacao" id="despesa" value="Despesa" selected class="radio-btn">
                     <label for="receita">Receita</label>
-                    <input type="radio" name="tipo_transacao" id="receita" value="Receita" class="radio-btn">
+                    <input class="radio" type="radio" name="tipo_transacao" id="receita" value="Receita" class="radio-btn">
                 </div>
                 <div class="input">
-                    <button type="submit" class="enviar" name="form-salvar">Salvar</button>
+                    <button type="submit" id="salvar" class="enviar" name="form-salvar">Salvar</button>
                 </div>
             </div>
         </form>
-</body> </html> {% endblock content %}
+<script>
+    document.getElementById("salvar").addEventListener("click", function(){
+        var descricao = document.getElementById("descricao").value;
+        var valor = document.getElementById("valor").value;
+        var tipo_transacao = document.getElementsByName("tipo_transacao");
+        if (!descricao || !valor) {
+            alert("Por favor, preencha todos os campos corretamente");
+        } else if(descricao || valor){          
+            var checked = false;
+            for (var i = 0; i < tipo_transacao.length; i++) {
+                if (tipo_transacao[i].checked) {
+                    checked = true;
+                    break;
+                }
+            }
+            if (!checked) {
+                alert("Por favor, preencha todos os campos corretamente");
+            } else {
+                // código para salvar dados aqui
+            }  
+        }
+    });
+</script>
+</body> 
+{% endblock content %}
+
+
