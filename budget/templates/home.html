@@ -13,7 +13,7 @@
             <div class="command_bar">
                 <button>
                     <span id="t_button">
-                        <a href="{% url 'opencreate' %}">
+                        <a href="{% url 'open_create_page' %}">
                             <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -40,7 +40,7 @@
                         <td>
                             <div class="editar">
                                 <button>
-                                    <a href="{% url 'abrirupdate' budget.id %}">
+                                    <a href="{% url 'open_update_page' budget.id %}">
                                         <span>
                                             <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
                                                 <path
@@ -54,7 +54,7 @@
                             <div class="deletar">
                                 <button>
                                     <span>
-                                        <a href="{% url 'vdelete' transacao.id %}">
+                                        <a href="{% url 'delete_budget' budget.id %}">
                                     </span>
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
