@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 def vdelete(request, id):
     transacao = get_object_or_404(Transacao, id=id)
     transacao.delete()
-    return redirect('vcreate')
+    return redirect('transacao')
 
 def abrirupdate(request, id):
     transacao = Transacao.objects.get(id=id)
