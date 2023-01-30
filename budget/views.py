@@ -18,7 +18,10 @@ def create_new_budget(request):
         orcamento = request.POST.get('orcamento')
         valor_limite = request.POST.get('valor_limite')
         valor_formatado = str(valor_limite).replace(',','.')
+        if not orcamento or not valor_formatado:            
+            return render(request, 'create_budget.html')
         Budget.objects.create(orcamento=orcamento, valor_limite=valor_formatado)
+        
     return redirect(home)
 
 def open_update_page(request, id):
@@ -32,6 +35,9 @@ def update_budget(request, id):
     valor_formatado = str(valor_limite).replace(',','.')
     budget.orcamento = orcamento
     budget.valor_limite = valor_formatado
+    if not orcamento or not valor_formatado:
+        budget = Budget.objects.get(id=id)             
+        return render(request, 'update.html', {'budget':budget})
     budget.save() 
     return redirect('home')
     

@@ -66,7 +66,6 @@ def vcreate(request):
         
     return redirect(vread)
 
-  
 
 
 
