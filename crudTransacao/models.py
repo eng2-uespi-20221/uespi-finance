@@ -1,11 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Transacao(models.Model):
-    id = models.AutoField(primary_key=True)
-    data = models.DateField(null=True)
+    data = models.DateField(auto_now_add=True)
     descricao = models.CharField(null=True, max_length=60)
     tipo_transacao = models.CharField(null=True, max_length=60)
-    valor = models.FloatField(null=True, default=0)
-
+    valor = models.DecimalField(null=True, default=0,decimal_places=2,max_digits=20)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING,default=1)
 
 

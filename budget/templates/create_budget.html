@@ -9,18 +9,18 @@
 
 <body>
     <div class="form-container2">
-        <h3 id="tit-crudbox">EDITAR ORÇAMENTO</h3>
-        <form action="{% url 'update_budget' budget.id %}" class="form-crud" method="POST">
+        <h3 id="tit-crudbox">CADASTRAR NOVO ORÇAMENTO</h3>
+        <form action="{% url 'create_new_budget' %}" class="form-crud" method="POST">
             {% csrf_token %}
             <div class="row-form">
                 <div class="input">
                     <label for="descricao">Descrição</label>
-                    <input type="text" name="orcamento" id="orcamento" autofocus value="{{ budget.orcamento }}">
+                    <input type="text" name="orcamento" id="orcamento" autofocus>
                 </div>
 
                 <div class="input">
                     <label for="valor"></label>
-                    <input type="text" name="valor_limite" id="valor" value="{{ budget.valor_limite }}">
+                    <input type="text" name="valor_limite" id="valor">
                 </div>
             </div>
             <div class="row-form">
