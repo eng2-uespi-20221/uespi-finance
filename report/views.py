@@ -15,8 +15,8 @@ from reportlab.lib.pagesizes import letter
 # Create your views here.
 
 def relatorio_pdf(request):
-    transacao = Transacao.objects.all()
-    categoria = Categoria.objects.all()
+    transacao = Transacao.objects.filter(user=request.user)
+    categoria = Categoria.objects.filter(user=request.user)
     saldo = 0
     lines = []
 
@@ -41,7 +41,6 @@ def relatorio_pdf(request):
     texto.setTextOrigin(inch, inch)
     texto.setFont('Helvetica', 12)
     for line in lines:
-        print(line)
         texto.textLine(str(line))
     c.drawText(texto)
     c.showPage()
