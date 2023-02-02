@@ -35,9 +35,10 @@ def vupdate(request, id):
     #se os valores obtidos forem nulo
     if not vdescricao or not valor or not vcategoria: 
         #recupera o id da transacao
-        transacao = Transacao.objects.get(id=id)        
+        transacao = Transacao.objects.get(id=id)     
+        category = Category.objects.filter(user_id=request.user.id)   
         #retorna para o formulario updateT passando o id da transacao         
-        return render(request, 'updateT.html', {'transacao':transacao})
+        return render(request, 'updateT.html', {'transacao':transacao, 'categories': category})
     else:
         #obtem id do registro
         category  = Category.objects.get_or_create(name=vcategoria)[0]
