@@ -21,7 +21,8 @@ def vdelete(request, id):
 
 def abrirupdate(request, id):
     transacao = Transacao.objects.get(id=id)
-    return render(request, 'updateT.html', {'transacao':transacao})
+    category = Category.objects.filter(user_id=request.user.id)
+    return render(request, 'updateT.html', {'transacao':transacao, 'categories': category } )
     
 
 def vupdate(request, id):
@@ -92,7 +93,7 @@ def vread(request):
     })
 
 def abrircreate(request):
-    category = Category.objects.all()
+    category = Category.objects.filter(user_id=request.user.id)
     return render(request, 'createT.html', {'categories': category})
 
 
