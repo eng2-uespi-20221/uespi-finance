@@ -47,14 +47,14 @@ def vupdate(request, id):
         if Decimal(transacao.valor) != Decimal(valor) or transacao.categoria != category: 
             # Era receita e se tornou despesa
             if transacao.categoria.type_transaction != category.type_transaction and category.type_transaction: #expense
-                request.user.account.balance -= transacao.valor + valor
-                request.user.account.income -= transacao.valor + valor
-                request.user.account.expense += valor
+                request.user.account.balance -= transacao.valor + Decimal(valor)
+                request.user.account.income -= transacao.valor + Decimal(valor)
+                request.user.account.expense += Decimal(valor)
             
             # Era despesa se tornou receita
             elif transacao.categoria.type_transaction != category.type_transaction and not category.type_transaction: # income
-                request.user.account.balance += transacao.valor + valor
-                request.user.account.income += valor
+                request.user.account.balance += transacao.valor + Decimal(valor)
+                request.user.account.income += Decimal(valor)
                 request.user.account.expense -= transacao.valor
 
             # mantem mesmo tipo
