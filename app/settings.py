@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'crudTransacao',
     'category.apps.CategoryConfig',  # guilherme
     'budget',  # 001-srsa-18/01/23--22:47
-    'report'
+    'report',
 ]
 
 MIDDLEWARE = [
