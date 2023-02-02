@@ -6,3 +6,4 @@ class Category(models.Model):
     name = models.CharField(max_length=40)
     type_transaction = models.BooleanField(default=0)
     
+    

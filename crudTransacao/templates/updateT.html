@@ -18,16 +18,16 @@
                 </div>
 
                 <div class="input">
+                    <label for="categoria">Categoria</label>
+                    <input type="text" name="categoria" id="categoria" value="{{ transacao.categoria.name }}" autofocus>
+                </div>
+
+                <div class="input">
                     <span>Valor</span>
                     <input type="text" name="valor" id="valor" value="{{ transacao.valor }}">
                 </div>
             </div>
-            <div class="row-form">
-                <select name="tipo_transacao" id="tipo_transacao">
-                    <option value="{{ transacao.tipo_transacao }}" selected >{{ transacao.tipo_transacao }}</option>
-                    <option value="Despesa">Despesa</option>
-                    <option value="Receita">Receita</option>
-                </select><br>
+            <div class="row-form">        
                 <div class="input">
                     <button type="submit" id="salvar" class="enviar" name="form-salvar">Salvar</button>
                 </div>
@@ -37,8 +37,9 @@
     document.getElementById("salvar").addEventListener("click", function(){
         var descricao = document.getElementById("descricao").value;
         var valor = document.getElementById("valor").value;
+        var categoria = document.getElementById("categoria").value;
         var tipo_transacao = document.getElementsByName("tipo_transacao");
-        if (!descricao || !valor) {
+        if (!descricao || !valor || !categoria) {
             alert("Por favor, preencha todos os campos corretamente");
         }
     });

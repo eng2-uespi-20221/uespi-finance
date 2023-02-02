@@ -21,15 +21,18 @@
                     <span>Valor</span>
                     <input type="number" name="valor" id="valor" value="">
                 </div>
+
+                <div class="input">
+                    <span>Categoria</span>
+                    <select name="categoria" id="categoria">
+                    {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+
             </div>
             <div class="row-form">
-                <div class="input">
-                    <span>Tipo transação:</span>
-                    <label for="despesa">Despesa</label>
-                    <input class="radio" type="radio" name="tipo_transacao" id="despesa" value="Despesa" selected class="radio-btn">
-                    <label for="receita">Receita</label>
-                    <input class="radio" type="radio" name="tipo_transacao" id="receita" value="Receita" class="radio-btn">
-                </div>
                 <div class="input">
                     <button type="submit" id="salvar" class="enviar" name="form-salvar">Salvar</button>
                 </div>
@@ -39,22 +42,10 @@
     document.getElementById("salvar").addEventListener("click", function(){
         var descricao = document.getElementById("descricao").value;
         var valor = document.getElementById("valor").value;
+        var categoria = document.getElementById("categoria").value;
         var tipo_transacao = document.getElementsByName("tipo_transacao");
-        if (!descricao || !valor) {
+        if (!descricao || !valor || !categoria) {
             alert("Por favor, preencha todos os campos corretamente");
-        } else if(descricao || valor){          
-            var checked = false;
-            for (var i = 0; i < tipo_transacao.length; i++) {
-                if (tipo_transacao[i].checked) {
-                    checked = true;
-                    break;
-                }
-            }
-            if (!checked) {
-                alert("Por favor, preencha todos os campos corretamente");
-            } else {
-                // código para salvar dados aqui
-            }  
         }
     });
 </script>

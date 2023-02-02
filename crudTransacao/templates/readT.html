@@ -31,8 +31,9 @@
                <tr>
                   <th>Data</th>
                   <th>Descrição</th>
+                  <th>Categoria</th>
                   <th>Valor</th>
-                  <th>Tipo de Transacao</th>
+                  <!-- <th>Tipo de Transacao</th> -->
                   <th>Editar</th>
                   <th>Deletar</th>
                </tr>
@@ -40,8 +41,10 @@
                <tr>
                   <td> {{ transacao.data }} </td>
                   <td> {{ transacao.descricao }} </td>
+                  <td> {{ transacao.categoria.name }} </td>
                   <td> {{ transacao.valor }}</td>
-                  <td> {{ transacao.tipo_transacao }}</td>
+                  <!-- <td>{%if category.type_transaction %}Despesa {% else %}Receita {% endif %}</td> -->
+                  <!-- <td> {{ transacao.categoria.type_transaction }}</td>-->
                   <td>
                      <div class="editar">
                         <button>
