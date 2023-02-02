@@ -9,7 +9,7 @@
 <body>
     <div class="form-container2">
         <h3 id="tit-crudbox">CADASTRAR NOVA TRANSAÇÃO</h3>
-        <form action="{% url 'vcreate' %}" class="form-crud" method="POST">
+        <form id="form_create" class="form-crud" action="{% url 'vcreate' %}" method="POST">
             {% csrf_token %}
             <div class="row-form">
                 <div class="input">
@@ -39,13 +39,14 @@
             </div>
         </form>
 <script>
-    document.getElementById("salvar").addEventListener("click", function(){
+    document.getElementById("form_create").addEventListener("submit", function(e){
         var descricao = document.getElementById("descricao").value;
         var valor = document.getElementById("valor").value;
         var categoria = document.getElementById("categoria").value;
         var tipo_transacao = document.getElementsByName("tipo_transacao");
         if (!descricao || !valor || !categoria) {
             alert("Por favor, preencha todos os campos corretamente");
+            e.preventDefault();
         }
     });
 </script>
