@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 
 def home(request):
     budgets = Budget.objects.filter(user_id=request.user.id)
-    budgets = Budget.objects.all()
     return render(request, 'home.html', {'budgets': budgets})
 
 def open_create_page(request):
@@ -20,7 +19,7 @@ def create_new_budget(request):
         valor_formatado = str(valor_limite).replace(',','.')
         if not orcamento or not valor_formatado:            
             return render(request, 'create_budget.html')
-        Budget.objects.create(orcamento=orcamento, valor_limite=valor_formatado)
+        Budget.objects.create(orcamento=orcamento, valor_limite=valor_formatado, user=request.user)
         
     return redirect(home)
 

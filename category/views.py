@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class CategoryHomeView(LoginRequiredMixin,View):
     login_url = 'login'
     def get(self, request):  
-        cat = Category.objects.all()
+        cat = Category.objects.filter(user_id=request.user.id)
         return render(request, 'category.html', {'categories':cat})       
 #def home (request):
  #   return HttpResponse('str')
@@ -21,7 +21,7 @@ class CategoryCreateView(LoginRequiredMixin,View):
         type_transaction = request.POST['type_transaction']
         if len(name)<2:
             return redirect('create')
-        category = Category(name=name, type_transaction=type_transaction)
+        category = Category(name=name, type_transaction=type_transaction, user=request.user)
         category.save()
         return redirect('category')
 
