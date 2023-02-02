@@ -26,4 +26,5 @@ urlpatterns = [
     path('crudTransacao/', include('crudTransacao.urls')),
     path('category/', include('category.urls')),
     path('budget/', include('budget.urls')),  # 003-srsa
+    path('report/', views.relatorio_pdf, name='report')),
 ]
