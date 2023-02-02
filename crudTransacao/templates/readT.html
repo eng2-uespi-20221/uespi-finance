@@ -3,82 +3,63 @@
 {% block content %}
 {% load static %}
 
-<head>
-   <link rel="stylesheet" href="{% static 'estilo.css' %}">
-</head>
+{% include 'card_account.html' %}
 
-<div class="main">
-   <div class="flex-container">
-      <div class="bar">
-         <div class="command_bar">
-            <button>
-               <span id="t_button">
-                  <a href="{% url 'abrircreate' %}">
-                     <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                           d="M16.19 2H7.81C4.17 2 2 4.17 2 7.81V16.18C2 19.83 4.17 22 7.81 22H16.18C19.82 22 21.99 19.83 21.99 16.19V7.81C22 4.17 19.83 2 16.19 2ZM16 12.75H12.75V16C12.75 16.41 12.41 16.75 12 16.75C11.59 16.75 11.25 16.41 11.25 16V12.75H8C7.59 12.75 7.25 12.41 7.25 12C7.25 11.59 7.59 11.25 8 11.25H11.25V8C11.25 7.59 11.59 7.25 12 7.25C12.41 7.25 12.75 7.59 12.75 8V11.25H16C16.41 11.25 16.75 11.59 16.75 12C16.75 12.41 16.41 12.75 16 12.75Z"
-                           fill="#1b69cc" />
+<div class="min-h-[15px] mt-3 bg-white rounded p-3 ">
+   <div class="flex flex-row justify-between items-center">
+      <h2 class="text-lg font-bold uppercase ">LISTA DE TRANSAÇÕES</h2>
+
+      <a href="{% url 'login' %}"
+         class="flex flex-row bg-blue-600 hover:bg-blue-700 text-white font-bold uppercase text-center py-2 px-4 rounded w-15 shadow-lg shadow-gray-400">
+         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+          
+         <span class="pl-3">ADICIONAR</span>
+      </a>
+   </div>
+   <div class="mt-4">
+      <style>
+         td, th {
+            border: 1px solid #dddddd;
+         }
+      </style>
+      <table class="table-auto w-full">
+         <thead>
+            <tr  class="bg-gray-400 hover:bg-gray-400">
+               <th class="p-2">Descrição</th>
+               <th class="p-2">Categoria</th>
+               <th class="p-2">Valor</th>
+               <th class="p-2">Data</th>
+               <!-- <th>Tipo de Transacao</th> -->
+               <th class="p-2"></th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for transacao in transacaos %}
+            <tr class="hover:bg-gray-300">
+               <td class="p-2"> {{ transacao.descricao }} </td>
+               <td class="p-2"> {{ transacao.categoria.name }} </td>
+               <td class="p-2"> {{ transacao.valor }}</td>
+               <td class="p-2"> {{ transacao.data }} </td>
+               <!-- <td>{%if category.type_transaction %}Despesa {% else %}Receita {% endif %}</td> -->
+               <!-- <td> {{ transacao.categoria.type_transaction }}</td>-->
+               <td class="flex flex-row justify-evenly p-2">
+                  <a href="{% url 'abrirupdate' transacao.id %}">
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
                      </svg>
                   </a>
-               </span>
-            </button>
-            <span id="tit_lista">LISTA DE TRANSAÇÕES</span>
-         </div>
-      </div>
-      <div class="list">
-         <div class="tabela">
-            <table>
-               <tr>
-                  <th>Data</th>
-                  <th>Descrição</th>
-                  <th>Categoria</th>
-                  <th>Valor</th>
-                  <!-- <th>Tipo de Transacao</th> -->
-                  <th>Editar</th>
-                  <th>Deletar</th>
-               </tr>
-               {% for transacao in transacaos %}
-               <tr>
-                  <td> {{ transacao.data }} </td>
-                  <td> {{ transacao.descricao }} </td>
-                  <td> {{ transacao.categoria.name }} </td>
-                  <td> {{ transacao.valor }}</td>
-                  <!-- <td>{%if category.type_transaction %}Despesa {% else %}Receita {% endif %}</td> -->
-                  <!-- <td> {{ transacao.categoria.type_transaction }}</td>-->
-                  <td>
-                     <div class="editar">
-                        <button>
-                           <a href="{% url 'abrirupdate' transacao.id %}">
-                              <span>
-                                 <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
-                                    <path
-                                       d="M5.3 19h1.075l9.9-9.9L15.2 8.025l-9.9 9.9ZM18.425 8.375l-2.5-2.475 1.2-1.2q.3-.325.725-.325t.725.325l1.05 1.025q.3.3.3.725t-.3.725ZM17.7 9.1 6.8 20H4.3v-2.5L15.2 6.6Zm-1.975-.55-.525-.525L16.275 9.1Z" />
-                                 </svg>
-                              </span>
-                           </a>
-                        </button>
-                     </div>
-                  <td>
-                     <div class="deletar">
-                        <button>
-                           <span>
-                              <a href="{% url 'vdelete' transacao.id %}">
-                           </span>
-                           <span>
-                              <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
-                                 <path
-                                    d="M7 21q-.825 0-1.412-.587Q5 19.825 5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413Q17.825 21 17 21ZM17 6H7v13h10ZM9 17h2V8H9Zm4 0h2V8h-2ZM7 6v13Z" />
-                              </svg>
-                           </span>
-                           </a>
-                        </button>
-                     </div>
-                  </td>
-                  </td>
-               </tr>
-               {% endfor %}
-            </table>
-         </div>
-      </div>
+                  <a href="{% url 'vdelete' transacao.id %}">
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                     </svg>                      
+                  </a>
+               </td>
+            </tr>
+            {% endfor %}
+         </tbody>
+      </table>
    </div>
-</div {% endblock content %}
+</div>
+{% endblock content %}
